@@ -7,6 +7,9 @@ COPY requirements.txt requirements.txt
 RUN pip install --upgrade pip \
   && pip install --no-cache-dir -r requirements.txt
 
-COPY app.py app.py
+COPY . /usr/src/app
 
-CMD [ "streamlit", "run", "/app.py", "--server.port", "8501"]
+EXPOSE 8501
+
+# Run main.py when the container launches using Streamlit
+CMD ["streamlit", "run", "app.py"]
